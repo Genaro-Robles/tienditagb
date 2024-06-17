@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.integrador1.tienditagb.models.Buys;
 import com.integrador1.tienditagb.services.BuysService;
+import com.integrador1.tienditagb.services.ProductService;
 
 @RestController
 @RequestMapping("/buys")
@@ -21,10 +22,15 @@ public class BuysController {
     @Autowired
     private BuysService buysService;
 
+    @Autowired
+    private ProductService productService;
+
     @PostMapping
     public String newBuys(@RequestBody Buys buys){
         try{
             this.buysService.newBuys(buys);
+
+            this.productService.updateStockProduct(buys.getProduct(), buys.getPurchasedQuantity());
 
             return "Nueva compra ingresado con exito.";
         }catch(Exception ex){

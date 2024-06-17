@@ -60,6 +60,7 @@ public class ProductServiceImp implements ProductService{
                 }).orElseThrow(() -> new ProductNotFoundException(id));
         return "Producto con el "+id+" a sido eliminado";
     }
+
     @Override
     public String renewProduct(int id) {
         productRepository.findById(id)
@@ -68,5 +69,18 @@ public class ProductServiceImp implements ProductService{
                     return productRepository.save(product);
                 }).orElseThrow(() -> new ProductNotFoundException(id));
         return "Producto con el "+id+" a sido restaurado";
+    }
+
+    @Override
+    public void updateStockProduct(int id, int purchasedQuantity){
+        Product product = this.productRepository.findById(id)
+        .orElseThrow(() -> new ProductNotFoundException(id));
+
+        int stockActual = product.getStock();
+        int newStock = stockActual + purchasedQuantity;
+
+        product.setStock(newStock);
+
+        this.productRepository.save(product);
     }
 }
