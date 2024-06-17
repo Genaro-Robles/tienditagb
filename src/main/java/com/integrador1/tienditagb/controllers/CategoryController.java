@@ -2,7 +2,6 @@ package com.integrador1.tienditagb.controllers;
 
 import com.integrador1.tienditagb.models.Category;
 import com.integrador1.tienditagb.services.CategoryService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

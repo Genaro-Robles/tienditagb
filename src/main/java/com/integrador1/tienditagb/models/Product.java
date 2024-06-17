@@ -1,8 +1,6 @@
 package com.integrador1.tienditagb.models;
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 public class Product {
