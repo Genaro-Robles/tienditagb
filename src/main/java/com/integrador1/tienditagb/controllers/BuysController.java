@@ -17,7 +17,7 @@ import com.integrador1.tienditagb.services.BuysService;
 @RestController
 @RequestMapping("/buys")
 public class BuysController {
-    
+
     @Autowired
     private BuysService buysService;
 

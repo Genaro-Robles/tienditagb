@@ -13,59 +13,57 @@ public class Buys {
     private int product;
     private int provider;
     private int user;
-    private int puchased_quantity;
+    private int purchasedQuantity;
     private double amount;
-    
-    public Buys(){
 
+    public Buys() {
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getProduct(){
+    public int getProduct() {
         return this.product;
     }
 
-    public void setProduct(int product){
+    public void setProduct(int product) {
         this.product = product;
     }
 
-    public int getProvider(){
+    public int getProvider() {
         return this.provider;
     }
 
-    public void setProvider(int provider){
+    public void setProvider(int provider) {
         this.provider = provider;
     }
 
-    public int getUser(){
+    public int getUser() {
         return this.user;
     }
 
-    public void setUser(int user){
+    public void setUser(int user) {
         this.user = user;
     }
 
-    public int getPuchasedQuantity(){
-        return this.puchased_quantity;
+    public int getPurchasedQuantity() {
+        return this.purchasedQuantity;
     }
 
-    public void setPuchasedQuantity(int puchased_quantity){
-        this.puchased_quantity = puchased_quantity;
+    public void setPurchasedQuantity(int purchasedQuantity) {
+        this.purchasedQuantity = purchasedQuantity;
     }
 
-    public double getAmount(){
+    public double getAmount() {
         return this.amount;
     }
 
-    public void setAmount(double amount){
+    public void setAmount(double amount) {
         this.amount = amount;
     }
-
 }
