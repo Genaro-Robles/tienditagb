@@ -15,6 +15,7 @@ public class Buys {
     private int user;
     private int purchasedQuantity;
     private double amount;
+    private boolean status = true;
 
     public Buys() {
     }
@@ -65,5 +66,13 @@ public class Buys {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

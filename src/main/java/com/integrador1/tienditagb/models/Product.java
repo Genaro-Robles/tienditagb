@@ -73,4 +73,5 @@ public class Product {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
 }

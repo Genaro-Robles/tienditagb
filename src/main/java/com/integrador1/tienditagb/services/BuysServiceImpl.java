@@ -17,26 +17,39 @@ public class BuysServiceImpl implements BuysService{
 
     @Override
     public Buys newBuys(Buys buys) {
-        return this.buysRepository.save(buys);
+        return buysRepository.save(buys);
     }
 
     @Override
     public List<Buys> getAllBuys() {
-        return this.buysRepository.findAll();
+        return buysRepository.findAll();
     }
 
     @Override
     public Buys getBuysById(int id) {
-        return this.buysRepository.findById(id).
+        return buysRepository.findById(id).
         orElseThrow(() -> new BuysNotFoundException(id));
     }
 
     @Override
     public String deleteBuys(int id) {
-        return this.buysRepository.findById(id)
+        buysRepository.findById(id)
         .map(buys -> {
-            this.buysRepository.delete(buys);
-            return "Compra con el id: " + id + " a sido eliminado.";
+            buys.setStatus(false);
+            return buysRepository.save(buys);
         }).orElseThrow(() -> new BuysNotFoundException(id));
+            return "Compra con el id: " + id + " a sido eliminada.";
+
+    }
+
+    @Override
+    public String renewBuys(int id) {
+        buysRepository.findById(id)
+                .map(buys -> {
+                    buys.setStatus(true);
+                    return buysRepository.save(buys);
+                }).orElseThrow(() -> new BuysNotFoundException(id));
+        return "Compra con el id: " + id + " a sido restaurada.";
+
     }
 }

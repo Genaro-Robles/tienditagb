@@ -2,6 +2,7 @@ package com.integrador1.tienditagb.services;
 
 import java.util.List;
 
+import com.integrador1.tienditagb.Exceptions.RoleNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,11 +46,22 @@ public class ProviderServiceImp implements ProviderService{
 
     @Override
     public String deleteProvider(int id) {
-        return this.providerRepository.findById(id)
+        providerRepository.findById(id)
         .map(provider -> {
-            this.providerRepository.delete(provider);
-            return "Proveedor con el id: " + id + " a sido eliminado.";
+            provider.setStatus(false);
+            return providerRepository.save(provider);
         }).orElseThrow(() -> new ProviderNotFoundException(id));
+            return "Proveedor con el id: " + id + " a sido eliminado.";
+    }
+
+    @Override
+    public String renewProvider(int id) {
+        providerRepository.findById(id)
+                .map(provider -> {
+                    provider.setStatus(true);
+                    return providerRepository.save(provider);
+                }).orElseThrow(() -> new ProviderNotFoundException(id));
+        return "Proveedor con el id: " + id + " a sido restaurado.";
     }
     
 }

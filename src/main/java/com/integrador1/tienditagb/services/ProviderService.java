@@ -9,4 +9,6 @@ public interface ProviderService {
     public Provider getProviderById(int id);
     public Provider updateProvider(Provider newProvider, int id);
     public String deleteProvider(int id);
+    public String renewProvider(int id);
+
 }

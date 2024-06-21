@@ -2,13 +2,14 @@ package com.integrador1.tienditagb.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-
     @Column(columnDefinition = "TEXT")
     private String description;
     private boolean status = true;

@@ -8,4 +8,5 @@ public interface BuysService {
     public List<Buys> getAllBuys();
     public Buys getBuysById(int id);
     public String deleteBuys(int id);
+    public String renewBuys(int id);
 }

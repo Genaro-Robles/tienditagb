@@ -24,6 +24,8 @@ public class Provider {
     @Column(columnDefinition = "VARCHAR(12)")
     private String phone;
 
+    private boolean status = true;
+
     public Provider(){
 
     }
@@ -66,5 +68,13 @@ public class Provider {
 
     public void setPhone(String phone){
         this.phone = phone;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

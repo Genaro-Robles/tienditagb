@@ -34,11 +34,11 @@ public class SalesController {
 
 
     @DeleteMapping("/{id}")
-    public String deleteRole(@PathVariable int id){
+    public String deleteSales(@PathVariable int id){
         return salesService.deleteSales(id);
     }
     @PatchMapping("/{id}")
-    public String renewRole(@PathVariable int id){
+    public String renewSales(@PathVariable int id){
         return salesService.renewSales(id);
     }
 }
