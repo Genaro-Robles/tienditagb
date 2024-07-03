@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductServiceImp implements ProductService{
+public class ProductServiceImp implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
@@ -30,12 +30,12 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public List<Product> getProductsbyCategoryActive(int category) {
-        return productRepository.findByStatusAndCategory(true,category);
+        return productRepository.findByStatusAndCategory(true, category);
     }
 
     @Override
     public Product getProductbyId(int id) {
-        return productRepository.findById(id).orElseThrow(()->new ProductNotFoundException(id));
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ProductServiceImp implements ProductService{
                     product.setStatus(false);
                     return productRepository.save(product);
                 }).orElseThrow(() -> new ProductNotFoundException(id));
-        return "Producto con el "+id+" a sido eliminado";
+        return "Producto con el " + id + " a sido eliminado";
     }
 
     @Override
@@ -68,16 +68,23 @@ public class ProductServiceImp implements ProductService{
                     product.setStatus(true);
                     return productRepository.save(product);
                 }).orElseThrow(() -> new ProductNotFoundException(id));
-        return "Producto con el "+id+" a sido restaurado";
+        return "Producto con el " + id + " a sido restaurado";
     }
 
+    // true:salida or false:entrada
     @Override
-    public void updateStockProduct(int id, int purchasedQuantity){
+    public void updateStockProduct(int id, int purchasedQuantity, boolean operator) {
         Product product = this.productRepository.findById(id)
-        .orElseThrow(() -> new ProductNotFoundException(id));
+                .orElseThrow(() -> new ProductNotFoundException(id));
 
         int stockActual = product.getStock();
-        int newStock = stockActual + purchasedQuantity;
+        int newStock = 0;
+
+        if (operator) {
+            newStock = stockActual - purchasedQuantity;
+        } else {
+            newStock = stockActual + purchasedQuantity;
+        }
 
         product.setStock(newStock);
 

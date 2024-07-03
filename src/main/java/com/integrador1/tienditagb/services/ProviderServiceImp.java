@@ -2,7 +2,6 @@ package com.integrador1.tienditagb.services;
 
 import java.util.List;
 
-import com.integrador1.tienditagb.Exceptions.RoleNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -23,7 +23,8 @@ public class BuysController {
     public String newBuys(@RequestBody Buys buys){
         try{
             buysService.newBuys(buys);
-            productService.updateStockProduct(buys.getProduct(), buys.getPurchasedQuantity());
+            productService.updateStockProduct(buys.getProduct(), 
+            buys.getPurchasedQuantity(),false);
 
             return "Nueva compra ingresado con exito.";
         }catch(Exception ex){
