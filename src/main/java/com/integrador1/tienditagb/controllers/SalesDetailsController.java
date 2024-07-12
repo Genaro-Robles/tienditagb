@@ -30,4 +30,13 @@ public class SalesDetailsController {
             return "Error: " + ex.getMessage(); 
         }
     }
+
+    @GetMapping("/{sale}")
+    public List<SalesDetails> getDetailsSaleByIdSale(@PathVariable int sale){
+        try{
+            return this.salesDetailsService.getSalesDetailsBySale(sale);
+        }catch(Exception ex){
+            return null;
+        }
+    }
 }

@@ -18,8 +18,8 @@ public class SalesDetailsServiceImp implements SalesDetailsService {
     }
 
     @Override
-    public List<SalesDetails> getByIdSales(int id) {
-        return this.salesDetailsRepository.findAll();
+    public List<SalesDetails> getSalesDetailsBySale(int sale) {
+        return this.salesDetailsRepository.findBySale(sale);
     }
     
 }
