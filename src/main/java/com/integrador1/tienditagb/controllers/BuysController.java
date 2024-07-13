@@ -1,8 +1,12 @@
 package com.integrador1.tienditagb.controllers;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.integrador1.tienditagb.models.Buys;
@@ -50,5 +54,13 @@ public class BuysController {
     @PatchMapping("/{id}")
     public String renewBuys(@PathVariable int id){
         return buysService.renewBuys(id);
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<InputStreamResource> exportBuys() throws Exception{
+        ByteArrayInputStream stream = buysService.exportBuys();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=provides.xls");
+        return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 }

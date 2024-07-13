@@ -3,8 +3,12 @@ package com.integrador1.tienditagb.controllers;
 import com.integrador1.tienditagb.models.Sales;
 import com.integrador1.tienditagb.services.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @RestController
@@ -40,5 +44,13 @@ public class SalesController {
     @PatchMapping("/{id}")
     public String renewSales(@PathVariable int id){
         return salesService.renewSales(id);
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<InputStreamResource> exportSales() throws Exception{
+        ByteArrayInputStream stream = salesService.exportSales();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=provides.xls");
+        return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 }
