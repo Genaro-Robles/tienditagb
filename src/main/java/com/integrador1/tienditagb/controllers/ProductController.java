@@ -1,7 +1,7 @@
 package com.integrador1.tienditagb.controllers;
 
-import com.integrador1.tienditagb.models.Product;
-import com.integrador1.tienditagb.services.ProductService;
+import com.integrador1.tienditagb.models.*;
+import com.integrador1.tienditagb.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -9,13 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @PostMapping
     public String newProduct(@RequestBody Product product){
@@ -68,4 +71,32 @@ public class ProductController {
         headers.add("Content-Disposition", "attachment; filename=provides.xls");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
+
+    @GetMapping("/report")
+    public ResponseEntity<Map<String, Object>> reportProduct(){
+        try{
+            List<Product> listaProducts = this.productService.getAllProduct();
+
+            List<Map<String, Object>> jsonListProduct = new ArrayList<>();
+            for (Product product : listaProducts) {
+                Map<String, Object> jsonProduct = new HashMap<>();
+
+                Category category = this.categoryService.getCategorybyId(product.getCategory());
+
+                jsonProduct.put("product", product);
+                jsonProduct.put("category", category);
+
+                jsonListProduct.add(jsonProduct);
+            }
+
+            Map<String, Object> response = new HashMap<>();
+
+            response.put("products", jsonListProduct);
+
+            return ResponseEntity.ok(response);
+        }catch(Exception ex){
+            return null;
+        }
+    }
+
 }
