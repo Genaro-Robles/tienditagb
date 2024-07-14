@@ -2,6 +2,7 @@ package com.integrador1.tienditagb.services;
 
 import com.integrador1.tienditagb.models.Sales;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 public interface SalesService {
@@ -10,4 +11,5 @@ public interface SalesService {
     public Sales getSalesbyId(int id);
     public String deleteSales(int id);
     public String renewSales(int id);
+    public ByteArrayInputStream exportSales() throws Exception;
 }

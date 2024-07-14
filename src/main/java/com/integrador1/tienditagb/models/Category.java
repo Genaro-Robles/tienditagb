@@ -2,8 +2,6 @@ package com.integrador1.tienditagb.models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 public class Category {
     @Id
