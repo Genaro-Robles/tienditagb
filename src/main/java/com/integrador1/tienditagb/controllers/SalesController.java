@@ -36,8 +36,8 @@ public class SalesController {
     @PostMapping
     public String newSales(@RequestBody Sales sales){
         try {
-            salesService.newSales(sales);
-            return "Nueva venta ingresado con exito";
+            int id = salesService.newSales(sales).getId();
+            return ""+id;
         } catch (Exception ex) {
             return "Error: "+ex;
         }
@@ -66,7 +66,7 @@ public class SalesController {
     public ResponseEntity<InputStreamResource> exportSales() throws Exception{
         ByteArrayInputStream stream = salesService.exportSales();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=provides.xls");
+        headers.add("Content-Disposition", "attachment; filename=ReporteVentas.xls");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 

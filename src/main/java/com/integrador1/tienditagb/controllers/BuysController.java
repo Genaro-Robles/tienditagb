@@ -71,7 +71,7 @@ public class BuysController {
     public ResponseEntity<InputStreamResource> exportBuys() throws Exception{
         ByteArrayInputStream stream = buysService.exportBuys();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=provides.xls");
+        headers.add("Content-Disposition", "attachment; filename=ReporteCompras.xls");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 

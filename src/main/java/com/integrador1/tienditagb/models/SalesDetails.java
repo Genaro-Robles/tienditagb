@@ -14,7 +14,7 @@ public class SalesDetails {
     private int product;
     private int cantidad;
     private float Importe;
-    private boolean status;
+    private boolean status = true;
 
     public SalesDetails() {
     }

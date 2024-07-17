@@ -68,7 +68,7 @@ public class ProductController {
     public ResponseEntity<InputStreamResource> exportProducts() throws Exception{
         ByteArrayInputStream stream = productService.exportProducts();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=provides.xls");
+        headers.add("Content-Disposition", "attachment; filename=ReporteProductos.xls");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 

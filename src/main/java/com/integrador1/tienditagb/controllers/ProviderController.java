@@ -60,7 +60,7 @@ public class ProviderController {
         ByteArrayInputStream stream = providerService.exportProvider();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=provides.xls");
+        headers.add("Content-Disposition", "attachment; filename=ReporteProveedores.xls");
         return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 }
